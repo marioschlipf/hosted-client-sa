@@ -136,11 +136,32 @@ $(document).on("click", ".w-button.fileDelete", function () {
 
 });
 $(document).on("click", ".w-button.fileEdit", function () {
-    // Create a reference to the file to delete
+    // Create a reference to the file to edit
     var refEdited = $(this).attr('id');
-    var clickedRow = $(this).closest('tr');
-    $(clickedRow).css('background-color', 'red');
     var clickedRef = storageRef.child(refEdited);
+    var clickedRow = $(this).closest('tr');
+
+    var documentDescription = $(clickedRow).children().eq(0);
+    var publishDate = $(clickedRow).children().eq(1);
+    var permission = $(clickedRow).children().eq(2);
+    var category = $(clickedRow).children().eq(3);
+    var list = $(clickedRow).children().eq(4);
+
+    var storedDescription = $(documentDescription).text();
+    var storedPublishDate = $(publishDate).text();
+    var storedPermission = $(permission).text();
+    var storedCategory = $(category).text();
+    var storedList = $(list).text();
+
+    $(documentDescription).html("<input class='text-field-5 w-input documentDescriptionEdit' type='text' value='"+storedDescription+"'/>");
+
+
+    console.log("stored"+storedDescription);
+
+
+    $(clickedRow).css('background-color', 'red');
+
+    
     console.log(clickedRow);
 
     clickedRow.children()[0];
