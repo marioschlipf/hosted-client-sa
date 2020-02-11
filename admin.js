@@ -78,7 +78,6 @@ $(document).on("change", ".w-select.permission", function () {
     });
 });
 
-
 db.collection("basicAccessDocuments").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
 

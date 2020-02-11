@@ -20,18 +20,18 @@ firebase.auth().onAuthStateChanged(function (user) {
                             console.log("basic" + doc);
 
                             if (doc.data().list == '1') {
-                                $("#receiveList1Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                $("#receiveList1Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td></tr>');
                             }
                             if (doc.data().list == '2') {
-                                $("#receiveList2Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                $("#receiveList2Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                             }
                             if (doc.data().list == '3') {
-                                $("#receiveList3Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                $("#receiveList3Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                             }
                             if (doc.data().list == '4') {
-                                $("#receiveList4Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                $("#receiveList4Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                             } else {
-                                $("#receiveOtherHere").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                $("#receiveOtherHere").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                             }
 
 
@@ -42,18 +42,18 @@ firebase.auth().onAuthStateChanged(function (user) {
                                 querySnapshot1.forEach(function (doc) {
 
                                     if (doc.data().list == '1') {
-                                        $("#receiveList1Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                        $("#receiveList1Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                                     }
                                     if (doc.data().list == '2') {
-                                        $("#receiveList2Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                        $("#receiveList2Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                                     }
                                     if (doc.data().list == '3') {
-                                        $("#receiveList3Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                        $("#receiveList3Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                                     }
                                     if (doc.data().list == '4') {
-                                        $("#receiveList4Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                        $("#receiveList4Here").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                                     } else {
-                                        $("#receiveOtherHere").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
+                                        $("#receiveOtherHere").append('<tr><td> <a href"'+doc.data().URL+'" target="_blank">' + doc.data().fileDescription + '</a> </td><td>' + doc.data().category + '</td></tr>');
                                     }
                                 });
                             });
