@@ -209,8 +209,8 @@ $(document).on("click", ".w-button.fileEdit", function () {
         $(this).text('Saving...');
         var refEdited = $(this).attr('id');
 
-        var newDescription =$(".descEdit").text();
-        var newDate = $(".dateEdit").text();
+        var newDescription =$(".descEdit").val();
+        var newDate = $(".dateEdit").val();
     
         var newCategory = $("#categoryEdit").val();
         var newList = $("#listEdit").val();
