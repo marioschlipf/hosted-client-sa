@@ -83,16 +83,16 @@ db.collection("basicAccessDocuments").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
        
         switch(doc.data().list) {
-            case "0":
+            case "1":
                 $("#inject0DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
-            case "1":
+            case "2":
                 $("#inject1DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
-            case "2":
+            case "3":
                 $("#inject2DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
-            case "3":
+            case "4":
                 $("#inject3DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
             default:  
@@ -109,16 +109,16 @@ db.collection("memberAccessDocuments").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         
         switch(doc.data().list) {
-            case "0":
+            case "1":
                 $("#inject0DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
-            case "1":
+            case "2":
                 $("#inject1DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
-            case "2":
+            case "3":
                 $("#inject2DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
-            case "3":
+            case "4":
                 $("#inject3DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
             default:
