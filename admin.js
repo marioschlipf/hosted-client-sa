@@ -219,97 +219,99 @@ function uploadFile(id) {
 
             });
         });
-    $("#uploadFileButton").on("click", function () {
-        let fileName = $("#fileName").val();
-        let documentAccess = $("#accessSelect").val();
-        let file = uploadedFile;
-        if (file && fileName && documentAccess) {
-            if (documentAccess == "basicAccess") {
-                db.collection("basicAccessDocuments").add({
+}
 
-                })
-                    .then(function (docRef) {
-                        console.log(docRef);
-                        uploadFile(docRef.id);
-                    })
-                    .catch(function (error) {
-                        alert("Error adding to DB:" + error);
-                        console.error("Error writing document: ", error);
-                    });
-            } else if (documentAccess == "memberAccess") {
-                db.collection("memberAccessDocuments").add({
-                })
-                    .then(function (docRef) {
-                        console.log(docRef);
-                        uploadFile(docRef.id);
-                    })
-                    .catch(function (error) {
-                        alert("Error adding to DB:" + error);
-                        console.error("Error writing document: ", error);
-                    });
-            }
+$("#uploadFileButton").on("click", function () {
+    let fileName = $("#fileName").val();
+    let documentAccess = $("#accessSelect").val();
+    let file = uploadedFile;
+    if (file && fileName && documentAccess) {
+        if (documentAccess == "basicAccess") {
+            db.collection("basicAccessDocuments").add({
 
-        } else {
-            alert("Missing fields/No file");
+            })
+                .then(function (docRef) {
+                    console.log(docRef);
+                    uploadFile(docRef.id);
+                })
+                .catch(function (error) {
+                    alert("Error adding to DB:" + error);
+                    console.error("Error writing document: ", error);
+                });
+        } else if (documentAccess == "memberAccess") {
+            db.collection("memberAccessDocuments").add({
+            })
+                .then(function (docRef) {
+                    console.log(docRef);
+                    uploadFile(docRef.id);
+                })
+                .catch(function (error) {
+                    alert("Error adding to DB:" + error);
+                    console.error("Error writing document: ", error);
+                });
         }
 
+    } else {
+        alert("Missing fields/No file");
+    }
 
-    });
+
+});
 
 
 
-    $("#addUserToWhitelist").on("click", function () {
-        var emailForWhitelist = $("#whitelistEmailField").val();
-        $(this).click(false);
-        $(this).css("background-color", "gray");
-        db.collection("Whitelist").doc(emailForWhitelist).set({})
-            .then(function () {
-                alert("User added to whitelist.");
-                location.reload();
-                $(this).click(true);
-                $(this).css("background-color", "#3898ec");
-            });
-
-    });
-
-    db.collection("Whitelist").get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-            console.log(doc.id);
-            $("#addWhitelistEmailsHere").append('<div class="div-block-26"><div>' + doc.id + '</div><a href="#" class="button-12 w-button deleteWhiteListUser" id="' + doc.id + '">Remove</a></div>');
-        });
-    });
-    $(document).on("click", ".deleteWhiteListUser", function () {
-        $(this).css("background-color", "gray");
-        db.collection("Whitelist").doc($(this).attr('id')).delete().then(function () {
-            alert("User successfully deleted from whitelist");
-            $(this).css("background-color", "#3898ec");
+$("#addUserToWhitelist").on("click", function () {
+    var emailForWhitelist = $("#whitelistEmailField").val();
+    $(this).click(false);
+    $(this).css("background-color", "gray");
+    db.collection("Whitelist").doc(emailForWhitelist).set({})
+        .then(function () {
+            alert("User added to whitelist.");
             location.reload();
-        }).catch(function (error) {
-            console.error("Error removing document: ", error);
+            $(this).click(true);
             $(this).css("background-color", "#3898ec");
         });
 
+});
+
+db.collection("Whitelist").get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+        console.log(doc.id);
+        $("#addWhitelistEmailsHere").append('<div class="div-block-26"><div>' + doc.id + '</div><a href="#" class="button-12 w-button deleteWhiteListUser" id="' + doc.id + '">Remove</a></div>');
     });
-
-
-
-    var adminMessageRef = db.collection("Message").doc("latest");
-    adminMessageRef.get().then(function (message) {
-        $("#updateMessageField").val(message.data().text);
+});
+$(document).on("click", ".deleteWhiteListUser", function () {
+    $(this).css("background-color", "gray");
+    db.collection("Whitelist").doc($(this).attr('id')).delete().then(function () {
+        alert("User successfully deleted from whitelist");
+        $(this).css("background-color", "#3898ec");
+        location.reload();
     }).catch(function (error) {
-        console.log("Error retrieving admin message");
+        console.error("Error removing document: ", error);
+        $(this).css("background-color", "#3898ec");
     });
 
-    $("#updateMessageButton").on("click", function () {
-        var updatedText = $("#updateMessageField").val();
-        console.log(updatedText + "IS the new text");
-        adminMessageRef.set({ text: updatedText })
-            .then(function () {
-                alert("Message updated");
-                window.location.reload();
-            })
-            .catch(function (error) {
-                alert("There was an error updating message: " + error);
-            });
-    });
+});
+
+
+
+var adminMessageRef = db.collection("Message").doc("latest");
+adminMessageRef.get().then(function (message) {
+    $("#updateMessageField").val(message.data().text);
+}).catch(function (error) {
+    console.log("Error retrieving admin message");
+});
+
+$("#updateMessageButton").on("click", function () {
+    var updatedText = $("#updateMessageField").val();
+    console.log(updatedText + "IS the new text");
+    adminMessageRef.set({ text: updatedText })
+        .then(function () {
+            alert("Message updated");
+            window.location.reload();
+        })
+        .catch(function (error) {
+            alert("There was an error updating message: " + error);
+        });
+});
 
