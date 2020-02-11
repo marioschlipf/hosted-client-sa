@@ -137,42 +137,46 @@ let storageRef = firebase.storage().ref();
 
 
 $(document).on("click", ".w-button.fileDelete", function () {
-    console.log($(this).attr('id'));
-    // Create a reference to the file to delete
-    var refDeleted = $(this).attr('id');
-    var clickedRef = storageRef.child(refDeleted);
+   if(confirm("Are you sure you want to delete this file?")){
+     // Create a reference to the file to delete
+     var refDeleted = $(this).attr('id');
+     var clickedRef = storageRef.child(refDeleted);
+ 
+ 
+     // File deleted successfully
+     db.collection("basicAccessDocuments").doc(refDeleted).delete().then(function () {
+         console.log("Document successfully deleted!");
+         clickedRef.delete().then(function () {
+             alert("File deleted Successfully");
+             location.reload();
+         }).catch(function (error) {
+             alert("Unable to delete file: " + error);
+         });
+         location.reload();
+ 
+     }).catch(function (error) {
+         console.error("Error removing document: ", error);
+         alert("Error deleting file from db: " + error);
+     });
+     db.collection("memberAccessDocuments").doc(refDeleted).delete().then(function () {
+         console.log("Document successfully deleted!");
+         clickedRef.delete().then(function () {
+             alert("File deleted Successfully");
+             location.reload();
+ 
+         }).catch(function (error) {
+             alert("Unable to delete file: " + error);
+         });
+ 
+     }).catch(function (error) {
+         console.error("Error removing document: ", error);
+         alert("Error deleting file from db: " + error);
+     });
+ 
 
-
-    // File deleted successfully
-    db.collection("basicAccessDocuments").doc(refDeleted).delete().then(function () {
-        console.log("Document successfully deleted!");
-        clickedRef.delete().then(function () {
-            alert("File deleted Successfully");
-            location.reload();
-        }).catch(function (error) {
-            alert("Unable to delete file: " + error);
-        });
-        location.reload();
-
-    }).catch(function (error) {
-        console.error("Error removing document: ", error);
-        alert("Error deleting file from db: " + error);
-    });
-    db.collection("memberAccessDocuments").doc(refDeleted).delete().then(function () {
-        console.log("Document successfully deleted!");
-        clickedRef.delete().then(function () {
-            alert("File deleted Successfully");
-            location.reload();
-
-        }).catch(function (error) {
-            alert("Unable to delete file: " + error);
-        });
-
-    }).catch(function (error) {
-        console.error("Error removing document: ", error);
-        alert("Error deleting file from db: " + error);
-    });
-
+   }
+   return false;
+   
 
 });
 $(document).on("click", ".w-button.fileEdit", function () {
