@@ -82,7 +82,7 @@ $(document).on("change", ".w-select.permission", function () {
 db.collection("basicAccessDocuments").get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
         console.log(doc.id, " => ", doc.data());
-        $("#injectAllDocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete </a></td></tr>');
+        $("#injectAllDocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>' + doc.data().list + '</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
     });
 });
 db.collection("memberAccessDocuments").get().then(function (querySnapshot) {
@@ -132,6 +132,49 @@ $(document).on("click", ".w-button.fileDelete", function () {
         console.error("Error removing document: ", error);
         alert("Error deleting file from db: " + error);
     });
+
+
+});
+$(document).on("click", ".w-button.fileEdit", function () {
+    // Create a reference to the file to delete
+    var refEdited = $(this).attr('id');
+    var clickedRow = $(this).closest('tr');
+    $(clickedRow).css('background-color', 'red');
+    var clickedRef = storageRef.child(refEdited);
+    console.log(clickedRow);
+
+    clickedRow.children()[0];
+
+
+    // File deleted successfully
+    // db.collection("basicAccessDocuments").doc(refDeleted).delete().then(function () {
+    //     console.log("Document successfully deleted!");
+    //     clickedRef.delete().then(function () {
+    //         alert("File deleted Successfully");
+    //         location.reload();
+    //     }).catch(function (error) {
+    //         alert("Unable to delete file: " + error);
+    //     });
+    //     location.reload();
+
+    // }).catch(function (error) {
+    //     console.error("Error removing document: ", error);
+    //     alert("Error deleting file from db: " + error);
+    // });
+    // db.collection("memberAccessDocuments").doc(refDeleted).delete().then(function () {
+    //     console.log("Document successfully deleted!");
+    //     clickedRef.delete().then(function () {
+    //         alert("File deleted Successfully");
+    //         location.reload();
+
+    //     }).catch(function (error) {
+    //         alert("Unable to delete file: " + error);
+    //     });
+
+    // }).catch(function (error) {
+    //     console.error("Error removing document: ", error);
+    //     alert("Error deleting file from db: " + error);
+    // });
 
 
 });
@@ -257,6 +300,7 @@ $("#uploadFileButton").on("click", function () {
 
 
 });
+
 
 
 
