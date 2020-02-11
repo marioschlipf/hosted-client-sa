@@ -1,1 +1,1 @@
-alert("YES2222");
+alert("ADMIN");
