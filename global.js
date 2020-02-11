@@ -191,9 +191,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-if(loginButton){
-    loginButton.addEventListener('click', login);
-}
+
+$("#loginButton").addEventListener('click', login);
+
 
 
 function login() {
@@ -250,9 +250,8 @@ function login() {
 
 }
 
-if(logoutLink){
-    logoutLink.addEventListener('click', logout);
-}
+$("#logoutLink").addEventListener('click', logout);
+
 
 
 
