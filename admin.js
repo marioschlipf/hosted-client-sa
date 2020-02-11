@@ -316,7 +316,8 @@ function uploadFile(id) {
                         fileDescription: fileName,
                         URL: downloadURL,
                         date: date,
-                        category: fileCategory
+                        category: fileCategory,
+                        list: fileList
                     })
                         .then(function () {
                             console.log("File upload successful.");
