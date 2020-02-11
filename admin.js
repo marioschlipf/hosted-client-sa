@@ -18,7 +18,7 @@ db.collection("Users").get().then(function (querySnapshot) {
                 if (doc.data().accessBasic == true) {
                     
                         $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess">No Access</option><option value="basicAccess" selected>Basic Access</option></select> </tr');
-                    }
+                    
                 } else {
                     $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess" selected>No Access</option><option value="basicAccess">Basic Access</option></select> </td></tr');
                 }
