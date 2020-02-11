@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                         if (user.data().accessMember == true) {
 
                             db.collection("memberAccessDocuments").get().then(function (querySnapshot1) {
-                                querySnapshot1.forEach(function (private) {
+                                querySnapshot1.forEach(function (doc) {
 
                                     if (doc.data().list == '1') {
                                         $("#receiveList1Here").append('<tr><td>' + doc.data().fileDescription + '</td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td><td><a href="' + doc.data().URL + '" class="tablebutton w-button fileView" target="_blank">View</a></td></tr>');
