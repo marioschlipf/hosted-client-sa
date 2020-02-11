@@ -186,11 +186,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-logoutLink.addEventListener('click', logout);
-
-function logout() {
-    firebase.auth().signOut();
-}
 
 
 
@@ -200,6 +195,7 @@ function logout() {
 loginButton.addEventListener('click', login);
 
 function login() {
+    console.log('test');
     var email = loginEmail.value;
     var password = loginPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -250,5 +246,12 @@ function login() {
 
 
 
+}
+
+
+logoutLink.addEventListener('click', logout);
+
+function logout() {
+    firebase.auth().signOut();
 }
 
