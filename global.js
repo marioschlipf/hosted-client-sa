@@ -112,7 +112,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                     });
                 }
             }).catch(function (error) {
-                if (privatePages.includes(currentPath) || adminPages.includes(currentPath) || outside.includes(currentPath) || publicPages.includes(currentUser)) {
+                if (privatePages.includes(currentPath) || adminPages.includes(currentPath) || outside.includes(currentPath) || publicPages.includes(currentPath)) {
                     alert("Error getting status:" + error);
                     console.log("Error getting document:", error);
                 } else {
