@@ -135,40 +135,72 @@ $(document).on("click", ".w-button.fileDelete", function () {
 
 
 });
-var editMode = 0;
 $(document).on("click", ".w-button.fileEdit", function () {
-
-    // Create a reference to the file to edit
-    var refEdited = $(this).attr('id');
-    var clickedRef = storageRef.child(refEdited);
-    var clickedRow = $(this).closest('tr');
-
-    var documentDescription = $(clickedRow).children().eq(0);
-    var publishDate = $(clickedRow).children().eq(1);
     var permission = $(clickedRow).children().eq(2);
-    var category = $(clickedRow).children().eq(3);
-    var list = $(clickedRow).children().eq(4);
-
-    var storedDescription = $(documentDescription).text();
-    var storedPublishDate = $(publishDate).text();
     var storedPermission = $(permission).text();
-    var storedCategory = $(category).text();
-    var storedList = $(list).text();
+    if($(this).text() == "Edit"){
+        $(this).text("Save");
+        $(this).css("background-color", "#2ecc71");
+        // Create a reference to the file to edit
+        
+        var clickedRow = $(this).closest('tr');
 
-    $(documentDescription).html("<input class='text-field-5 w-input documentDescriptionEdit' type='text' value='"+storedDescription+"'/>");
-    $(publishDate).html("<input type='text' class='text-field-6 w-input hasDatepicker' maxlength='256' name='field' data-name='Field' placeholder='Date' id='datepicker' required=''>")
-    $(category).html("<select id='accessSelect' name='Access' data-name='Access' required='' class='select-field w-select'><option value='basicAccess'>Basic Access</option><option value='memberAccess'>Member Access</option></select>")
-    $(category).html("<select id='fileCategory' name='fileCategory' data-name='fileCategory' required='' class='select-field w-select'><option value='fees'>Fees</option><option value='general'>General</option><option value='legal'>Legal</option><option value='contracts'>Contracts</option></select>");
-    $(list).html("<select id='listSection' name='List-Section' data-name='List Section' required='' class='select-field w-select'><option value='1'>General</option><option value='2'>Eurex Repo</option><option value='3'>HQLA-X</option><option value='4'>Trusted 3rd Party</option></select>")
+        var documentDescription = $(clickedRow).children().eq(0);
+        var publishDate = $(clickedRow).children().eq(1);
+        
+        var category = $(clickedRow).children().eq(3);
+        var list = $(clickedRow).children().eq(4);
+
+        var storedDescription = $(documentDescription).text();
+        var storedPublishDate = $(publishDate).text();
+        
+        var storedCategory = $(category).text();
+        var storedList = $(list).text();
+        
     
-    console.log("stored"+storedDescription);
+        $(documentDescription).html("<input class='text-field-5 w-input descEdit' type='text' value='"+storedDescription+"'/>");
+        $(publishDate).html("<input class='text-field-5 w-input dateEdit' type='text' value='"+storedPublishDate+"'/>");
+        $(category).html("<select id='categoryEdit' name='fileCategory' data-name='fileCategory' required='' class='select-field w-select'><option value='fees'>Fees</option><option value='general'>General</option><option value='legal'>Legal</option><option value='contracts'>Contracts</option></select>");
+        $(list).html("<select id='listEdit' name='List-Section' data-name='List Section' required='' class='select-field w-select'><option value='1'>General</option><option value='2'>Eurex Repo</option><option value='3'>HQLA-X</option><option value='4'>Trusted 3rd Party</option></select>")
+       
+
+    }else if ($(this).text() == "Save"){
+        $(this).attr('readonly', true);
+        $(this).text('Saving...');
+        var refEdited = $(this).attr('id');
+
+        var newDescription =$(".descEdit").text();
+        var newDate = $(".dateEdit").text();
+    
+        var newCategory = $(".categoryEdit").val();
+        var newList = $(".listEdit").val();
+        if(storedPermission == "Basic Access"){
+            db.collection("basicAccessDocuments").doc(refEdited).update({category: newCategory, date: newDate, fileDescription: newDescription, list: newList}).then(function(){
+                alert("Document Edited Successfully");
+                location.reload();
+            }).catch(function(error){
+                alert("Error: " + error);
+            });
+        }else{
+            db.collection("memberAccessDocuments").doc(refEdited).update({category: newCategory, date: newDate, fileDescription: newDescription, list: newList}).then(function(){
+                alert("Document Edited Successfully");
+                location.reload();
+            }).catch(function(error){
+                alert("Error: " + error);
+            });
 
 
+
+        }
+     
+    }
 
     
-    console.log(clickedRow);
 
-    clickedRow.children()[0];
+
+
+
+
 
 
     // File deleted successfully
