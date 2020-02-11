@@ -175,7 +175,7 @@ $(document).on("click", ".w-button.fileDelete", function () {
 $(document).on("click", ".w-button.fileEdit", function () {
     var clickedRow = $(this).closest('tr');
     var permission = $(clickedRow).children().eq(2);
-    var storedPermission = $(permission).html();
+    var storedPermission = $(permission).id;
     if($(this).text() == "Edit"){
         $(this).text("Save");
         $(this).css("background-color", "#2ecc71");
@@ -212,7 +212,7 @@ $(document).on("click", ".w-button.fileEdit", function () {
     
         var newCategory = $("#categoryEdit").val();
         var newList = $("#listEdit").val();
-        if(storedPermission == "<strong>Basic Access</strong>"){
+        if(storedPermission == "0"){
             db.collection("basicAccessDocuments").doc(refEdited).update({category: newCategory, date: newDate, fileDescription: newDescription, list: newList}).then(function(){
                 alert("Document Edited Successfully");
                 location.reload();
@@ -236,42 +236,6 @@ $(document).on("click", ".w-button.fileEdit", function () {
     }
 
     
-
-
-
-
-
-
-
-    // File deleted successfully
-    // db.collection("basicAccessDocuments").doc(refDeleted).delete().then(function () {
-    //     console.log("Document successfully deleted!");
-    //     clickedRef.delete().then(function () {
-    //         alert("File deleted Successfully");
-    //         location.reload();
-    //     }).catch(function (error) {
-    //         alert("Unable to delete file: " + error);
-    //     });
-    //     location.reload();
-
-    // }).catch(function (error) {
-    //     console.error("Error removing document: ", error);
-    //     alert("Error deleting file from db: " + error);
-    // });
-    // db.collection("memberAccessDocuments").doc(refDeleted).delete().then(function () {
-    //     console.log("Document successfully deleted!");
-    //     clickedRef.delete().then(function () {
-    //         alert("File deleted Successfully");
-    //         location.reload();
-
-    //     }).catch(function (error) {
-    //         alert("Unable to delete file: " + error);
-    //     });
-
-    // }).catch(function (error) {
-    //     console.error("Error removing document: ", error);
-    //     alert("Error deleting file from db: " + error);
-    // });
 
 
 });
