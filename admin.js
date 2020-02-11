@@ -135,7 +135,9 @@ $(document).on("click", ".w-button.fileDelete", function () {
 
 
 });
+var editMode = 0;
 $(document).on("click", ".w-button.fileEdit", function () {
+
     // Create a reference to the file to edit
     var refEdited = $(this).attr('id');
     var clickedRef = storageRef.child(refEdited);
@@ -154,12 +156,14 @@ $(document).on("click", ".w-button.fileEdit", function () {
     var storedList = $(list).text();
 
     $(documentDescription).html("<input class='text-field-5 w-input documentDescriptionEdit' type='text' value='"+storedDescription+"'/>");
-
-
+    $(publishDate).html("<input type='text' class='text-field-6 w-input hasDatepicker' maxlength='256' name='field' data-name='Field' placeholder='Date' id='datepicker' required=''>")
+    $(category).html("<select id='accessSelect' name='Access' data-name='Access' required='' class='select-field w-select'><option value='basicAccess'>Basic Access</option><option value='memberAccess'>Member Access</option></select>")
+    $(category).html("<select id='fileCategory' name='fileCategory' data-name='fileCategory' required='' class='select-field w-select'><option value='fees'>Fees</option><option value='general'>General</option><option value='legal'>Legal</option><option value='contracts'>Contracts</option></select>");
+    $(list).html("<select id='listSection' name='List-Section' data-name='List Section' required='' class='select-field w-select'><option value='1'>General</option><option value='2'>Eurex Repo</option><option value='3'>HQLA-X</option><option value='4'>Trusted 3rd Party</option></select>")
+    
     console.log("stored"+storedDescription);
 
 
-    $(clickedRow).css('background-color', 'red');
 
     
     console.log(clickedRow);
