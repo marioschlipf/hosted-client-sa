@@ -175,7 +175,9 @@ $(document).on("click", ".w-button.fileDelete", function () {
 $(document).on("click", ".w-button.fileEdit", function () {
     var clickedRow = $(this).closest('tr');
     var permission = $(clickedRow).children().eq(2);
-    var storedPermission = $(permission).id;
+    
+    var storedPermission = $(permission).attr('id');
+    console.log("Stored Permission" + storedPermission);
     if($(this).text() == "Edit"){
         $(this).text("Save");
         $(this).css("background-color", "#2ecc71");
