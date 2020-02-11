@@ -173,14 +173,16 @@ $(document).on("click", ".w-button.fileDelete", function () {
 
 });
 $(document).on("click", ".w-button.fileEdit", function () {
+    var clickedRow = $(this).closest('tr');
     var permission = $(clickedRow).children().eq(2);
-    var storedPermission = $(permission).text();
+    console.log($(permission).text);
+    var storedPermission = $(permission).child().text();
     if($(this).text() == "Edit"){
         $(this).text("Save");
         $(this).css("background-color", "#2ecc71");
         // Create a reference to the file to edit
         
-        var clickedRow = $(this).closest('tr');
+        
 
         var documentDescription = $(clickedRow).children().eq(0);
         var publishDate = $(clickedRow).children().eq(1);
