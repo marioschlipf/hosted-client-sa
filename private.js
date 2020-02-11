@@ -36,28 +36,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
                         });
-                        if (user.data().accessMember == true) {
-
-                            db.collection("memberAccessDocuments").get().then(function (querySnapshot1) {
-                                querySnapshot1.forEach(function (doc) {
-
-                                    if (doc.data().list == '1') {
-                                        $("#receiveList1Here").append('<tr><td> <a class="w-button fileView" style="background-color: transparent; color: black; text-decoration: underline;" href="' + doc.data().URL + '" target="_blank">'+doc.data().fileDescription+' </a></td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td></tr>');
-                                    }
-                                    if (doc.data().list == '2') {
-                                        $("#receiveList2Here").append('<tr><td> <a class="w-button fileView" style="background-color: transparent; color: black; text-decoration: underline;" href="' + doc.data().URL + '" target="_blank">'+doc.data().fileDescription+' </a></td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td></tr>');
-                                    }
-                                    if (doc.data().list == '3') {
-                                        $("#receiveList3Here").append('<tr><td> <a class="w-button fileView" style="background-color: transparent; color: black; text-decoration: underline;" href="' + doc.data().URL + '" target="_blank">'+doc.data().fileDescription+' </a></td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td></tr>');
-                                    }
-                                    if (doc.data().list == '4') {
-                                        $("#receiveList4Here").append('<tr><td> <a class="w-button fileView" style="background-color: transparent; color: black; text-decoration: underline;" href="' + doc.data().URL + '" target="_blank">'+doc.data().fileDescription+' </a></td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td></tr>');
-                                    } else {
-                                        $("#receiveOtherHere").append('<tr><td> <a class="w-button fileView" style="background-color: transparent; color: black; text-decoration: underline;" href="' + doc.data().URL + '" target="_blank">'+doc.data().fileDescription+' </a></td><td><strong>' + doc.data().date + '</strong></td><td>' + doc.data().category + '</td></tr>');
-                                    }
-                                });
-                            });
-                        }
+                      
 
                     });
 

@@ -16,13 +16,11 @@ db.collection("Users").get().then(function (querySnapshot) {
             }
             if (doc.data().admin != true) {
                 if (doc.data().accessBasic == true) {
-                    if (doc.data().accessMember == true) {
-                        $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess">No Access</option><option value="basicAccess">Basic Access</option><option value="memberAccess" selected>Member Access</option></select> </tr');
-                    } else {
-                        $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess">No Access</option><option value="basicAccess" selected>Basic Access</option><option value="memberAccess">Member Access</option></select> </tr');
+                    
+                        $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess">No Access</option><option value="basicAccess" selected>Basic Access</option></select> </tr');
                     }
                 } else {
-                    $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess" selected>No Access</option><option value="basicAccess">Basic Access</option><option value="memberAccess">Member Access</option></select> </td></tr');
+                    $("#userList").append('<tr><td>' + doc.data().email + '</td><td>' + lastLoginDate + '</td><td> <select class="w-select permission" id="' + doc.id + '"><option value="noAccess" selected>No Access</option><option value="basicAccess">Basic Access</option></select> </td></tr');
                 }
             }
         });
@@ -35,29 +33,24 @@ $(document).on("change", ".w-select.permission", function () {
     switch ($(this).val()) {
         case "noAccess":
             changedPermission = {
-                accessBasic: false,
-                accessMember: false
+                accessBasic: false
+           
             };
             break;
         case "basicAccess":
             changedPermission = {
-                accessBasic: true,
-                accessMember: false
+                accessBasic: true
+           
             };
             break;
-        case "memberAccess":
-            changedPermission = {
-                accessBasic: true,
-                accessMember: true
-            };
-            break;
+        
         default:
             changedPermission = {
-                accessBasic: true,
-                accessMember: false
+                accessBasic: true
+     
             }
     }
-    console.log("Working?" + changedPermission);
+
     var userToUpdate = db.collection("Users").doc($(this).attr('id'));
     userToUpdate.get().then(function (updateUser) {
         if (updateUser.exists) {
@@ -86,19 +79,19 @@ db.collection("basicAccessDocuments").get().then(function (querySnapshot) {
        
         switch(doc.data().list) {
             case "1":
-                $("#inject0DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>General</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
+                $("#inject0DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td>' + doc.data().category + '</td><td>General</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
             case "2":
-                $("#inject1DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>Eurex Repo</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
+                $("#inject1DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td>' + doc.data().category + '</td><td>Eurex Repo</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
             case "3":
-                $("#inject2DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>HQLAX</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
+                $("#inject2DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td>' + doc.data().category + '</td><td>HQLAX</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
             case "4":
-                $("#inject3DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>Trusted 3rd Party</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
+                $("#inject3DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td>' + doc.data().category + '</td><td>Trusted 3rd Party</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
                 break;
             default:  
-                $("#inject4DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="0"> <strong>Basic Access</strong></td><td>' + doc.data().category + '</td><td>Other</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
+                $("#inject4DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td>' + doc.data().category + '</td><td>Other</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
         
         }
 
@@ -107,29 +100,7 @@ db.collection("basicAccessDocuments").get().then(function (querySnapshot) {
        
     });
 });
-db.collection("memberAccessDocuments").get().then(function (querySnapshot) {
-    querySnapshot.forEach(function (doc) {
-        
-        switch(doc.data().list) {
-            case "1":
-                $("#inject0DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>General</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
-                break;
-            case "2":
-                $("#inject1DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>Eurex Repo</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
-                break;
-            case "3":
-                $("#inject2DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>HQLAX</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
-                break;
-            case "4":
-                $("#inject3DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>Trusted 3rd Party</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
-                break;
-            default:
-                $("#inject4DocsHere").append('<tr><td>' + doc.data().fileDescription + '</td><td> ' + doc.data().date + ' </td><td id="1"> <strong>Member Access</strong></td><td>' + doc.data().category + '</td><td>Other</td><td> <a class="w-button fileView" href="' + doc.data().URL + '" target="_blank">View </a></td><td> <a class="w-button fileDelete" id="' + doc.id + '">Delete</a></td><td><a class="w-button fileEdit" id="' + doc.id + '">Edit</a></td></tr>');
 
-        }
-       
-    });
-});
 
 // Create a reference under wh
 let storageRef = firebase.storage().ref();
@@ -149,7 +120,7 @@ $(document).on("click", ".w-button.fileDelete", function () {
              alert("File deleted Successfully");
              location.reload();
          }).catch(function (error) {
-             alert("Unable to delete file: " + error);
+            
          });
          location.reload();
  
@@ -157,20 +128,7 @@ $(document).on("click", ".w-button.fileDelete", function () {
          console.error("Error removing document: ", error);
          alert("Error deleting file from db: " + error);
      });
-     db.collection("memberAccessDocuments").doc(refDeleted).delete().then(function () {
-         console.log("Document successfully deleted!");
-         clickedRef.delete().then(function () {
-             alert("File deleted Successfully");
-             location.reload();
  
-         }).catch(function (error) {
-             alert("Unable to delete file: " + error);
-         });
- 
-     }).catch(function (error) {
-         console.error("Error removing document: ", error);
-         alert("Error deleting file from db: " + error);
-     });
  
 
    }
@@ -180,10 +138,8 @@ $(document).on("click", ".w-button.fileDelete", function () {
 });
 $(document).on("click", ".w-button.fileEdit", function () {
     var clickedRow = $(this).closest('tr');
-    var permission = $(clickedRow).children().eq(2);
-    
-    var storedPermission = $(permission).attr('id');
-    console.log("Stored Permission" + storedPermission);
+  
+ 
     if($(this).text() == "Edit"){
         $(this).text("Save");
         $(this).css("background-color", "#2ecc71");
@@ -220,26 +176,14 @@ $(document).on("click", ".w-button.fileEdit", function () {
     
         var newCategory = $("#categoryEdit").val();
         var newList = $("#listEdit").val();
-        if(storedPermission == "0"){
-            db.collection("basicAccessDocuments").doc(refEdited).update({category: newCategory, date: newDate, fileDescription: newDescription, list: newList}).then(function(){
-                alert("Document Edited Successfully");
-                location.reload();
-            }).catch(function(error){
-                alert("Error: " + error);
-            });
-        }else{
-            db.collection("memberAccessDocuments").doc(refEdited).update({category: newCategory, date: newDate, fileDescription: newDescription, list: newList}).then(function(){
-                alert("Document Edited Successfully");
-                location.reload();
-            }).catch(function(error){
-                alert("Error: " + error);
-                location.reload();
-
-            });
-
-
-
-        }
+        
+        db.collection("basicAccessDocuments").doc(refEdited).update({category: newCategory, date: newDate, fileDescription: newDescription, list: newList}).then(function(){
+            alert("Document Edited Successfully");
+            location.reload();
+        }).catch(function(error){
+            alert("Error: " + error);
+        });
+       
      
     }
 
@@ -265,7 +209,7 @@ function uploadFile(id) {
     let file = uploadedFile;
     let storageRef = firebase.storage().ref(id);
     let task = storageRef.put(file);
-    let documentAccess = $("#accessSelect").val();
+    let documentAccess = "basicAccess";
     let fileName = $("#fileName").val();
     let fileCategory = $("#fileCategory").val();
     let fileList = $("#listSection").val();
@@ -292,7 +236,7 @@ function uploadFile(id) {
             console.log("Success??");
             $("#fileUploadStatus").text("Success!");
             task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                if (documentAccess == "basicAccess") {
+               // if (documentAccess == "basicAccess") {
                     db.collection("basicAccessDocuments").doc(id).set({
                         fileDescription: fileName,
                         URL: downloadURL,
@@ -309,25 +253,7 @@ function uploadFile(id) {
                             alert("Error adding to DB:" + error);
                             console.error("Error writing document: ", error);
                         });
-                } else if (documentAccess == "memberAccess") {
-                    // Add a new document in collection "cities"
-                    db.collection("memberAccessDocuments").doc(id).set({
-                        fileDescription: fileName,
-                        URL: downloadURL,
-                        date: date,
-                        category: fileCategory,
-                        list: fileList
-                    })
-                        .then(function () {
-                            console.log("File upload successful.");
-                            alert("File upload successful.");
-                            location.reload();
-                        })
-                        .catch(function (error) {
-                            console.error("Error writing document: ", error);
-                            alert("Error adding to DB:" + error);
-                        });
-                }
+                
                 return downloadURL;
 
             });
@@ -336,10 +262,9 @@ function uploadFile(id) {
 
 $("#uploadFileButton").on("click", function () {
     let fileName = $("#fileName").val();
-    let documentAccess = $("#accessSelect").val();
     let file = uploadedFile;
-    if (file && fileName && documentAccess) {
-        if (documentAccess == "basicAccess") {
+    if (file && fileName) {
+        
             db.collection("basicAccessDocuments").add({
 
             })
@@ -350,19 +275,8 @@ $("#uploadFileButton").on("click", function () {
                 .catch(function (error) {
                     alert("Error adding to DB:" + error);
                     console.error("Error writing document: ", error);
-                });
-        } else if (documentAccess == "memberAccess") {
-            db.collection("memberAccessDocuments").add({
-            })
-                .then(function (docRef) {
-                    console.log(docRef);
-                    uploadFile(docRef.id);
-                })
-                .catch(function (error) {
-                    alert("Error adding to DB:" + error);
-                    console.error("Error writing document: ", error);
-                });
-        }
+            });
+        
 
     } else {
         alert("Missing fields/No file");
