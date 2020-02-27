@@ -27,9 +27,11 @@ var publicPages = [
 var adminPages = [
     '/sa/admin'
 ];
+
 var outside = [
     '/sa',
     '/SA'
+    // MS What about sA and Sa? Use transformation to lowercase instead?
 ];
 
 
@@ -42,7 +44,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
             var docRef = db.collection("Users").doc(firebase.auth().currentUser.uid);
 
-            docRef.get().then(function (doc) {
+            docRef.get().then(function (doc) { // MS: This whole function passed to .then() should probably be moved into a separate function
                 if (doc.exists) {
                     if (doc.data().admin == true) {
                         // User is signed in with Admin rights.
@@ -60,7 +62,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                         var d = new Date();
                         var strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 
-
+                        // MS You can set the last login status of any user. Also, you can set your own isVerified status.
                         userDBREF.set({
                             isVerified: true,
                             lastLogin: strDate
@@ -70,6 +72,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                         if (publicPages.includes(currentPath) || adminPages.includes(currentPath) || outside.includes(currentPath)) {
                             window.location.replace('/sa/private');
                         } else {
+                            // MS There is a lot of code duplication in this huge function
                             console.log("User is logged in with access");
                             console.log('Email:' + user.email);
                             console.log('UID:' + user.uid);
@@ -83,6 +86,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                             console.log("User is not logged in in with access");
                             console.log('Email:' + user.email);
                             console.log('UID:' + user.uid);
+                            // MS I think there should be some error handing. Also, this code is quite redundant (I see it at least 4 times). Could be moved out to a helper function?
                             firebase.auth().signOut().then(function () {
                                 // Sign-out successful.
                             }).catch(function (error) {
@@ -141,6 +145,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                 user1.sendEmailVerification().then(function () {
                     // Email sent.
                     alert("Email sent.");
+                    // MS Redundant code
                     firebase.auth().signOut().then(function () {
                         // Sign-out successful.
                     }).catch(function (error) {
@@ -218,6 +223,7 @@ function login() {
                         window.location.replace('./private');
 
                     } else {
+                        // MS Whats that error code for?
                         var errorCode = "1";
                         var errorMessage = "Account not activated";
                         console.log('Error code: ' + errorCode);

@@ -16,6 +16,7 @@ signupButton.addEventListener('click', function () {
                 }).catch(function (error) {
                     // An error happened.
                     window.location.replace('/sa/log-in');
+                    // MS This is an odd error message and most likely not an intended redirect target :-)
                     alert("Sign Up Success! Please verify your email before logging in.")
 
                 });
@@ -24,7 +25,7 @@ signupButton.addEventListener('click', function () {
                 // An error happened.
                 window.location.replace('/sa/log-in');
 
-
+                // MS is this error even shown when you do the redirect before?
                 console.log(error);
             });
 
@@ -41,6 +42,7 @@ signupButton.addEventListener('click', function () {
 
 });
 
+// MS Remove unused code
     // function signup(){
 
 

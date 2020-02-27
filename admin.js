@@ -120,7 +120,7 @@ $(document).on("click", ".w-button.fileDelete", function () {
              alert("File deleted Successfully");
              location.reload();
          }).catch(function (error) {
-            
+            // MS Error handling?
          });
          location.reload();
  
@@ -233,7 +233,7 @@ function uploadFile(id) {
 
 
         }, function () {
-            console.log("Success??");
+            console.log("Success??"); // MS A lot of debug logging here.
             $("#fileUploadStatus").text("Success!");
             task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                // if (documentAccess == "basicAccess") {
@@ -298,7 +298,7 @@ $("#addUserToWhitelist").on("click", function () {
             location.reload();
             $(this).click(true);
             $(this).css("background-color", "#3898ec");
-        });
+        }); // MS No error handling
 
 });
 
